@@ -18,7 +18,7 @@ Window::WindowClass::WindowClass() noexcept
 	wc.hInstance = GetInstance();
 	wc.hIcon = static_cast<HICON>(
 		LoadImage(
-			hInst, MAKEINTRESOURCE(IDI_ICON1), 
+			hInst, MAKEINTRESOURCE(IDI_ICON1),
 			IMAGE_ICON, 128, 128, 0
 		));
 	wc.hCursor = nullptr;
@@ -70,6 +70,7 @@ Window::Window(int width, int height, const char* name)
 		nullptr, nullptr, WindowClass::GetInstance(), this
 	);
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
+	pGfx = std::make_unique<Graphics>(hWnd);
 }
 
 Window::~Window()
@@ -81,6 +82,25 @@ void Window::SetTitle(const std::string& title) {
 	if (SetWindowText(hWnd, title.c_str()) == 0) {
 		throw "Failed to change title";
 	}
+}
+
+std::optional<int> Window::ProcessMessages() {
+	MSG msg;
+	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+		if (msg.message == WM_QUIT) {
+			return msg.wParam;
+		}
+
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	return {};
+}
+
+Graphics& Window::Gfx()
+{
+	return *pGfx;
 }
 
 LRESULT CALLBACK Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
@@ -121,7 +141,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 		kbd.ClearState();
 		break;
 
-	// Keyboard messages
+		// Keyboard messages
 	case WM_KEYDOWN:
 	case WM_SYSKEYDOWN:
 		if (!(lParam & 0x40000000) || kbd.AutorepeatIsEnabled()) {
@@ -136,7 +156,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 		kbd.OnChar(static_cast<unsigned char>(wParam));
 		break;
 
-	//Mouse messages
+		//Mouse messages
 	case WM_MOUSEMOVE:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
@@ -156,7 +176,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 				mouse.OnMouseLeave();
 			}
 		}
-		break; 
+		break;
 	}
 	case WM_LBUTTONDOWN:
 	{

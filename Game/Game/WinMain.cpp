@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "App.h"
 
 int CALLBACK WinMain(
     HINSTANCE hInstance,
@@ -7,21 +7,7 @@ int CALLBACK WinMain(
     int nCmdShow)
 {
     try {
-        Window wnd(1280, 720, "Game");
-
-        MSG msg;
-        BOOL gResult;
-        while (gResult = GetMessage(&msg, nullptr, 0, 0) > 0) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-
-        if (gResult == -1) {
-            return -1;
-        }
-        else {
-            return msg.wParam;
-        }
+        return App{}.Go();
     }
     catch (const ExceptionExtension& e)
     {
