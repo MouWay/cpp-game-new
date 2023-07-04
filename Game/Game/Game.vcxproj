@@ -143,8 +143,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExceptionExtension.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="VoizWin.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Downloads\food_cake_cheddard_cheese_icon_250979.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
