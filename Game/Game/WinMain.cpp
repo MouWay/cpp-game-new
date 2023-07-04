@@ -6,19 +6,34 @@ int CALLBACK WinMain(
     LPSTR lpCmdLine,
     int nCmdShow)
 {
-    Window wnd(800, 300, "Game");
+    try {
+        Window wnd(1280, 720, "Game");
 
-    MSG msg;
-    BOOL gResult;
-    while (gResult = GetMessage(&msg, nullptr, 0, 0) > 0) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-    }
+        MSG msg;
+        BOOL gResult;
+        while (gResult = GetMessage(&msg, nullptr, 0, 0) > 0) {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
 
-    if (gResult == -1) {
-        return -1;
+        if (gResult == -1) {
+            return -1;
+        }
+        else {
+            return msg.wParam;
+        }
     }
-    else {
-        return msg.wParam;
+    catch (const ExceptionExtension& e)
+    {
+        MessageBox(nullptr, e.what(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
     }
-}
+    catch (const std::exception& e)
+    {
+        MessageBox(nullptr, e.what(), "Standard Exception", MB_OK | MB_ICONEXCLAMATION);
+    }
+    catch (...)
+    {
+        MessageBox(nullptr, "No details available", "Unknown Exception", MB_OK | MB_ICONEXCLAMATION);
+    }
+    return -1;
+} 

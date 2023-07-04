@@ -137,10 +137,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExceptionExtension.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExceptionExtension.h" />
     <ClInclude Include="VoizWin.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

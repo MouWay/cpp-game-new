@@ -1,9 +1,28 @@
 #pragma once
 #include "VoizWin.h"
+#include "ExceptionExtension.h"
 
 
 class Window
 {
+public:
+	class Exception : public ExceptionExtension
+	{
+		using ExceptionExtension::ExceptionExtension;
+	public:
+		static std::string TranslateErrorCode(HRESULT hr) noexcept;
+	};
+	class HrException : public Exception
+	{
+	public:
+		HrException(int line, const char* file, HRESULT hr) noexcept;
+		const char* what() const noexcept override;
+		const char* GetType() const noexcept override;
+		HRESULT GetErrorCode() const noexcept;
+		std::string GetErrorDescription() const noexcept;
+	private:
+		HRESULT hr;
+	};
 private:
 	class WindowClass
 	{
