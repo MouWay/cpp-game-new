@@ -4,6 +4,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "WindowsThrowMacros.h"
 #include <optional>
 #include <memory>
 
@@ -27,6 +28,11 @@ public:
 		std::string GetErrorDescription() const noexcept;
 	private:
 		HRESULT hr;
+	};
+	class NoGfxException : public Exception {
+	public:
+		using Exception::Exception;
+		const char* GetType() const noexcept override;
 	};
 private:
 	class WindowClass
