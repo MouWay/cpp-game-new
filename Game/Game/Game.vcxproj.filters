@@ -147,6 +147,9 @@
     <ClCompile Include="SolidSphere.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VoizWin.h">
@@ -305,6 +308,9 @@
     <ClInclude Include="TestObject.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="Cylinder.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -351,6 +357,21 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="SolidVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="IndexedPhongPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="BlendedPhongPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="BlendedPhongVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturedPhongVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturedPhongPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
