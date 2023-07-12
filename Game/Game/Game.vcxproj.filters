@@ -108,9 +108,6 @@
     <ClCompile Include="Sampler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Sheet.cpp">
-      <Filter>Исходные файлы\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
@@ -263,9 +260,6 @@
     <ClInclude Include="Sampler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Sheet.h">
-      <Filter>Файлы заголовков\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
@@ -306,6 +300,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="SolidSphere.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObject.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
