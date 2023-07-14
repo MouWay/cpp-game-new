@@ -93,12 +93,6 @@
     <ClCompile Include="VertexShader.cpp">
       <Filter>Исходные файлы\Bindable</Filter>
     </ClCompile>
-    <ClCompile Include="Box.cpp">
-      <Filter>Исходные файлы\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="Pyramid.cpp">
-      <Filter>Исходные файлы\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="GDIPlusManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -109,9 +103,6 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Исходные файлы\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="SkinnedBox.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="ImguiManager.cpp">
@@ -147,8 +138,14 @@
     <ClCompile Include="SolidSphere.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="Cylinder.cpp">
+    <ClCompile Include="AssetTest.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,7 +191,7 @@
     <ClInclude Include="Bindable.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="BindableBase.h">
+    <ClInclude Include="BindableCommon.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="ConstantBuffers.h">
@@ -224,9 +221,6 @@
     <ClInclude Include="Drawable.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="Box.h">
-      <Filter>Файлы заголовков\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="DrawableBase.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
@@ -251,9 +245,6 @@
     <ClInclude Include="Sphere.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="Pyramid.h">
-      <Filter>Файлы заголовков\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="GDIPlusManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -264,9 +255,6 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Файлы заголовков\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="SkinnedBox.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="ImguiManager.h">
@@ -308,7 +296,19 @@
     <ClInclude Include="TestObject.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="Cylinder.h">
+    <ClInclude Include="AssetTest.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionalNoexcept.h">
+      <Filter>Файлы заголовков\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
@@ -335,18 +335,6 @@
     <None Include="imgui\imgui.natstepfilter" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="ColorBlendPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="ColorBlendVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="TexturePS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="TextureVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
     <FxCompile Include="PhongPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
@@ -357,21 +345,6 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="SolidVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="IndexedPhongPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="BlendedPhongPS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="BlendedPhongVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="TexturedPhongVS.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="TexturedPhongPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
