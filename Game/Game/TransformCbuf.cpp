@@ -2,30 +2,41 @@
 
 namespace Bind
 {
-	TransformCbuf::TransformCbuf(Graphics& gfx, const Drawable& parent, UINT slot)
-		:
-		parent(parent)
+	TransformCbuf::TransformCbuf(Graphics& gfx, UINT slot)
 	{
 		if (!pVcbuf)
 		{
 			pVcbuf = std::make_unique<VertexConstantBuffer<Transforms>>(gfx, slot);
 		}
 	}
-
 	void TransformCbuf::Bind(Graphics& gfx) noexcept
 	{
-		const auto modelView = parent.GetTransformXM() * gfx.GetCamera();
-		const Transforms tf =
-		{
+		UpdateBindImpl(gfx, GetTransforms(gfx));
+	}
+
+	void TransformCbuf::InitializeParentReference(const Drawable& parent) noexcept
+	{
+		pParent = &parent;
+	}
+
+	void TransformCbuf::UpdateBindImpl(Graphics& gfx, const Transforms& tf) noexcept
+	{
+		assert(pParent != nullptr);
+		pVcbuf->Update(gfx, tf);
+		pVcbuf->Bind(gfx);
+	}
+
+	TransformCbuf::Transforms TransformCbuf::GetTransforms(Graphics& gfx) noexcept
+	{
+		assert(pParent != nullptr);
+		const auto modelView = pParent->GetTransformXM() * gfx.GetCamera();
+		return {
 			DirectX::XMMatrixTranspose(modelView),
 			DirectX::XMMatrixTranspose(
 				modelView *
 				gfx.GetProjection()
 			)
 		};
-		pVcbuf->Update(gfx, tf);
-		pVcbuf->Bind(gfx);
 	}
-
 	std::unique_ptr<VertexConstantBuffer<TransformCbuf::Transforms>> TransformCbuf::pVcbuf;
 }

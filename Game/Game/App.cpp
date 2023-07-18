@@ -3,23 +3,29 @@
 #include <algorithm>
 #include "MathExtension.h"
 #include "Surface.h"
-#include "GDIPlusManager.h"
 #include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx11.h"
+#include "VertexBuffer.h"
+#include "DynamicConstant.h"
+#include "Testing.h"
+#include "PerfLog.h"
 
 #pragma comment(lib, "assimp-vc143-mt.lib")
 
 namespace dx = DirectX;
 
-GDIPlusManager gdipm;
-
-App::App()
+App::App(const std::string& commandLine)
 	:
+	commandLine(commandLine),
 	wnd(1280, 720, "Game"),
 	light(wnd.Gfx())
 {
-	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 40.0f));
+	TestDynamicConstant();
+	cube.SetPos({ 4.0f,0.0f,0.0f });
+	cube2.SetPos({ 0.0f,4.0f,0.0f });
+	//bluePlane.SetPos({-10.0f,0.0f,-20.0f});
+	//redPlane.SetPos({-20.0f, 0.0f, -20.0f});
+
+	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 400.0f));
 }
 
 void App::DoFrame()
@@ -29,9 +35,14 @@ void App::DoFrame()
 	wnd.Gfx().SetCamera(cam.GetMatrix());
 	light.Bind(wnd.Gfx(), cam.GetMatrix());
 
-	nano.Draw(wnd.Gfx());
-	light.Draw(wnd.Gfx());
+	//room.Submit(fc);
+	//bluePlane.Draw(wnd.Gfx());
+	//redPlane.Draw(wnd.Gfx());
+	light.Submit(fc);
+	cube.Submit(fc);
+	cube2.Submit(fc);
 
+	fc.Execute(wnd.Gfx());
 
 	while (const auto e = wnd.kbd.ReadKey())
 	{
@@ -92,7 +103,7 @@ void App::DoFrame()
 	{
 		if (!wnd.CursorEnabled())
 		{
-			cam.Rotate(delta->x, delta->y);
+			cam.Rotate((float)delta->x, (float)delta->y);
 		}
 	}
 
@@ -100,10 +111,16 @@ void App::DoFrame()
 	cam.SpawnControlWindow();
 	light.SpawnControlWindow();
 	ShowImguiDemoWindow();
-	nano.ShowWindow();
+	//room.ShowWindow(wnd.Gfx(), "Room");
+	//bluePlane.SpawnControlWindow(wnd.Gfx(), "Blue Plane");
+	//redPlane.SpawnControlWindow(wnd.Gfx(), "Red Plane");
+	cube.SpawnControlWindow(wnd.Gfx(), "Cube 1");
+	cube2.SpawnControlWindow(wnd.Gfx(), "Cube 2");
 
 	// present
 	wnd.Gfx().EndFrame();
+
+	fc.Reset();
 }
 
 void App::ShowImguiDemoWindow()

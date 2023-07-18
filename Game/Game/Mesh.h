@@ -1,5 +1,5 @@
 #pragma once
-#include "DrawableBase.h"
+#include "Drawable.h"
 #include "BindableCommon.h"
 #include "Vertex.h"
 #include <optional>
@@ -7,6 +7,11 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include "ConditionalNoexcept.h"
+#include "ConstantBuffers.h"
+#include <type_traits>
+#include <filesystem>
+#include "imgui/imgui.h"
+#include "DynamicConstant.h"
 
 
 class ModelException : public ExceptionExtension
@@ -20,12 +25,12 @@ private:
 	std::string note;
 };
 
-class Mesh : public DrawableBase<Mesh>
+class Mesh : public Drawable
 {
 public:
-	Mesh(Graphics& gfx, std::vector<std::unique_ptr<Bind::Bindable>> bindPtrs);
-	void Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noxnd;
+	using Drawable::Drawable;
 	DirectX::XMMATRIX GetTransformXM() const noexcept override;
+	void Submit(FrameCommander& frame, DirectX::FXMMATRIX accumulatedTranform) const noxnd;
 private:
 	mutable DirectX::XMFLOAT4X4 transform;
 };
@@ -33,16 +38,20 @@ private:
 class Node
 {
 	friend class Model;
-	friend class ModelWindow;
 public:
-	Node(const std::string& name, std::vector<Mesh*> meshPtrs, const DirectX::XMMATRIX& transform) noxnd;
-	void Draw(Graphics& gfx, DirectX::FXMMATRIX accumulatedTransform) const noxnd;
+	Node(int id, const std::string& name, std::vector<Mesh*> meshPtrs, const DirectX::XMMATRIX& transform) noxnd;
+	void Submit(FrameCommander& frame, DirectX::FXMMATRIX accumulatedTransform) const noxnd;
 	void SetAppliedTransform(DirectX::FXMMATRIX transform) noexcept;
+	const DirectX::XMFLOAT4X4& GetAppliedTransform() const noexcept;
+	int GetId() const noexcept;
+	void ShowTree(Node*& pSelectedNode) const noexcept;
+	//const Dcb::Buffer* GetMaterialConstants() const noxnd;
+	//void SetMaterialConstants(const Dcb::Buffer&) noxnd;
 private:
 	void AddChild(std::unique_ptr<Node> pChild) noxnd;
-	void ShowTree(int& nodeIndex, std::optional<int>& selectedIndex, Node*& pSelectedNode) const noexcept;
 private:
 	std::string name;
+	int id;
 	std::vector<std::unique_ptr<Node>> childPtrs;
 	std::vector<Mesh*> meshPtrs;
 	DirectX::XMFLOAT4X4 transform;
@@ -52,13 +61,14 @@ private:
 class Model
 {
 public:
-	Model(Graphics& gfx, const std::string fileName);
-	void Draw(Graphics& gfx) const noxnd;
-	void ShowWindow(const char* windowName = nullptr) noexcept;
+	Model(Graphics& gfx, const std::string& pathString, float scale = 1.0f);
+	void Submit(FrameCommander& frame) const noxnd;
+	void ShowWindow(Graphics& gfx, const char* windowName = nullptr) noexcept;
+	void SetRootTransform(DirectX::FXMMATRIX tf) noexcept;
 	~Model() noexcept;
 private:
-	static std::unique_ptr<Mesh> ParseMesh(Graphics& gfx, const aiMesh& mesh);
-	std::unique_ptr<Node> ParseNode(const aiNode& node) noexcept;
+	static std::unique_ptr<Mesh> ParseMesh(Graphics& gfx, const aiMesh& mesh, const aiMaterial* const* pMaterials, const std::filesystem::path& path, float scale);
+	std::unique_ptr<Node> ParseNode(int& nextId, const aiNode& node) noexcept;
 private:
 	std::unique_ptr<Node> pRoot;
 	std::vector<std::unique_ptr<Mesh>> meshPtrs;
