@@ -34,6 +34,18 @@
     <Filter Include="Исходные файлы\Drawable">
       <UniqueIdentifier>{ad7f2253-892c-4eff-ac80-0c38c5d0d3eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\RenderGraph">
+      <UniqueIdentifier>{2c7744ad-ccd4-42b2-a3b2-3f442841b085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\RenderGraph">
+      <UniqueIdentifier>{4b7661a6-c122-4fa8-95f3-bda390ae0331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Testing">
+      <UniqueIdentifier>{715505e7-02e4-45bd-ad45-fb7a1044d84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Testing">
+      <UniqueIdentifier>{03bf02cc-bbbd-47dc-9070-2bf278ea6418}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -65,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="DxgiInfoManager.cpp">
       <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Bindable.cpp">
-      <Filter>Исходные файлы\Bindable</Filter>
     </ClCompile>
     <ClCompile Include="Topology.cpp">
       <Filter>Исходные файлы\Bindable</Filter>
@@ -141,9 +150,6 @@
     <ClCompile Include="TestPlane.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="TransformCbufDoubleboi.cpp">
-      <Filter>Исходные файлы\Bindable</Filter>
-    </ClCompile>
     <ClCompile Include="TestCube.cpp">
       <Filter>Исходные файлы\Drawable</Filter>
     </ClCompile>
@@ -168,9 +174,6 @@
     <ClCompile Include="LayoutCodex.cpp">
       <Filter>Исходные файлы\Bindable</Filter>
     </ClCompile>
-    <ClCompile Include="Testing.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Job.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -181,6 +184,108 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Technique.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelException.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthStencil.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsResource.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="StepLinkingProbe.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferClearPass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="BindingPass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Pass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Sink.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderGraph.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderQueuePass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderGraphCompileException.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTarget.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformCbufScaling.cpp">
+      <Filter>Исходные файлы\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing.cpp">
+      <Filter>Исходные файлы\Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="BlurOutlineRenderGraph.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="HorizontalBlurPass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticalBlurPass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaleOutlineRenderGraph.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="FullscreenPass.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraContainer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Projection.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraIndicator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>Исходные файлы\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowCameraCbuf.cpp">
+      <Filter>Исходные файлы\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowSampler.cpp">
+      <Filter>Исходные файлы\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowRasterizer.cpp">
+      <Filter>Исходные файлы\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeTexture.cpp">
+      <Filter>Исходные файлы\RenderGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyboxTransformCbuf.cpp">
+      <Filter>Исходные файлы\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="cnpy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -329,9 +434,6 @@
     <ClInclude Include="TestPlane.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="TransformCbufDoubleboi.h">
-      <Filter>Файлы заголовков\Bindable</Filter>
-    </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>Файлы заголовков\Drawable</Filter>
     </ClInclude>
@@ -347,9 +449,6 @@
     <ClInclude Include="Blender.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Rasterizer.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Sampler.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
@@ -362,13 +461,7 @@
     <ClInclude Include="LayoutCodex.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Testing.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Stencil.h">
-      <Filter>Файлы заголовков\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameCommander.h">
       <Filter>Файлы заголовков\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Job.h">
@@ -376,9 +469,6 @@
     </ClInclude>
     <ClInclude Include="NullPixelShader.h">
       <Filter>Файлы заголовков\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Pass.h">
-      <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Step.h">
       <Filter>Файлы заголовков</Filter>
@@ -390,6 +480,150 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="TechniqueProbe.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelException.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelProbe.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthStencil.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsResource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferResource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="StepLinkingProbe.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="BindingPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferClearPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="FullscreenPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="LambertianPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Pass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Sink.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderGraph.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderGraphCompileException.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderQueuePass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="OutlineDrawingPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="OutlineMaskGenerationPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformCbufScaling.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Testing.h">
+      <Filter>Файлы заголовков\Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="TestModelProbe.h">
+      <Filter>Файлы заголовков\Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="BlurOutlineDrawingPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="BlurOutlineRenderGraph.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="HorizontalBlurPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalBlurPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaleOutlineRenderGraph.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="WRLExtension.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraContainer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Projection.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraIndicator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustum.h">
+      <Filter>Файлы заголовков\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="WireframePass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Channels.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowMappingPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowCameraCbuf.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowSampler.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowRasterizer.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeTexture.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxPass.h">
+      <Filter>Файлы заголовков\RenderGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxTransformCbuf.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>Файлы заголовков\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="cnpy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -414,54 +648,109 @@
       <Filter>DxErr</Filter>
     </None>
     <None Include="imgui\imgui.natstepfilter" />
+    <None Include="HLSL.props" />
+    <None Include="VShadow.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="Transform.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="ShaderOps.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="PointLight.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="LightVectorData.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="PShadow.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="_PShadow_Dynamic.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="_PShadow_Static.hlsli">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="PhongPS.hlsl">
+    <FxCompile Include="PhongDif_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongVS.hlsl">
+    <FxCompile Include="PhongDif_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="SolidPS.hlsl">
+    <FxCompile Include="Solid_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="SolidVS.hlsl">
+    <FxCompile Include="Solid_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSSpecNormalMap.hlsl">
+    <FxCompile Include="PhongDifSpcNrm_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSNormalMap.hlsl">
+    <FxCompile Include="PhongDifNrm_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongVSNormalMap.hlsl">
+    <FxCompile Include="PhongDifNrm_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSNormalMapObject.hlsl">
+    <FxCompile Include="Phong_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSNotex.hlsl">
+    <FxCompile Include="Phong_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongVSNotex.hlsl">
+    <FxCompile Include="PhongDifSpc_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PointLight.hlsl">
+    <FxCompile Include="PhongDifMskSpcNrm_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="ShaderOps.hlsl">
+    <FxCompile Include="PhongDifMskSpcNrm_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="LightVectorData.hlsl">
+    <FxCompile Include="PhongDifSpcNrm_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Transform.hlsl">
+    <FxCompile Include="PhongDifSpc_VS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSSpec.hlsl">
+    <FxCompile Include="Offset_VS_deprecated.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="PhongPSSpecNormMask.hlsl">
+    <FxCompile Include="Fullscreen_VS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Blur_PS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="BlurOutline_PS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongDifMskSpc_PS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="PhongDifMskSpc_VS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="ShadowTest_PS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="ShadowTest_VS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Skybox_PS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Skybox_VS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shadow_VS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shadow_PS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

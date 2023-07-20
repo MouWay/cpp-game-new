@@ -1,2 +1,12 @@
-﻿  Window.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDifMskSpcNrm_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDifMskSpc_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDif_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDifNrm_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\ShadowTest_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\Phong_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDifSpc_PS.cso
+  compilation object save succeeded; see C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\Game\ShaderBin\PhongDifSpcNrm_PS.cso
+  Проверка источников на наличие зависимостей модуля…
   Game.vcxproj -> C:\Users\voiz94\Documents\GitHub\ccp-game-new\Game\x64\Debug\Game.exe

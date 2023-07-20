@@ -4,6 +4,7 @@
 #include <cassert>
 #include <sstream>
 #include <filesystem>
+#include "Util.h"
 
 Surface::Surface(unsigned int width, unsigned int height)
 {
@@ -59,6 +60,11 @@ unsigned int Surface::GetHeight() const noexcept
 	return (unsigned int)scratch.GetMetadata().height;
 }
 
+unsigned int Surface::GetBytePitch() const noexcept
+{
+	return (unsigned int)scratch.GetImage(0, 0, 0)->rowPitch;
+}
+
 Surface::Color* Surface::GetBufferPtr() noexcept
 {
 	return reinterpret_cast<Color*>(scratch.GetPixels());
@@ -80,7 +86,7 @@ Surface Surface::FromFile(const std::string& name)
 	mbstowcs_s(nullptr, wideName, name.c_str(), _TRUNCATE);
 
 	DirectX::ScratchImage scratch;
-	HRESULT hr = DirectX::LoadFromWICFile(wideName, DirectX::WIC_FLAGS_NONE, nullptr, scratch);
+	HRESULT hr = DirectX::LoadFromWICFile(ToWide(name).c_str(), DirectX::WIC_FLAGS_IGNORE_SRGB, nullptr, scratch);
 
 	if (FAILED(hr))
 	{

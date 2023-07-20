@@ -2,14 +2,12 @@
 #include "Window.h"
 #include "Timer.h"
 #include "ImguiManager.h"
-#include "Camera.h"
+#include "CameraContainer.h"
 #include "PointLight.h"
-#include "TestPlane.h"
 #include "TestCube.h"
-#include "Mesh.h"
-#include <set>
-#include "Stencil.h"
-#include "FrameCommander.h"
+#include "Model.h"
+#include "BlurOutlineRenderGraph.h"
+#include "MathExtension.h"
 
 class App
 {
@@ -18,22 +16,25 @@ public:
 	int Go();
 	~App();
 private:
-	void DoFrame();
+	void DoFrame(float dt);
+	void HandleInput(float dt);
 	void ShowImguiDemoWindow();
 private:
 	std::string commandLine;
 	bool showDemoWindow = false;
 	ImguiManager imgui;
 	Window wnd;
-	//ScriptCommander scriptCommander;
+	Rgph::BlurOutlineRenderGraph rg{ wnd.Gfx() };
 	Timer timer;
 	float speed_factor = 1.0f;
-	Camera cam;
-	FrameCommander fc;
+	//Camera cam{ { -30.0f,31.0f,60.0f },PI / 9.0f,PI * 5.0f / 6.0f };
+	CameraContainer cameras;
 	PointLight light;
-	//Model room{ wnd.Gfx(),"Models\\Room\\room_mat.glb" };
-	//TestPlane bluePlane{ wnd.Gfx(),6.0f,{ 0.3f,0.3f,1.0f,0.0f } };
-	//TestPlane redPlane{ wnd.Gfx(),6.0f,{ 1.0f,0.3f,0.3f,0.0f } };
+	Model room{ wnd.Gfx(),"Models\\Room\\room_mat.glb" };
+	Model lady{ wnd.Gfx(), "Models\\Entity\\Lady\\lady.obj" };
+	Model revolver{ wnd.Gfx(),"Models\\Weapons\\Revolver\\revolver.glb" };
+	Model revolver2{ wnd.Gfx(),"Models\\Weapons\\Revolver\\revolver.glb" };
 	TestCube cube{ wnd.Gfx(),4.0f };
 	TestCube cube2{ wnd.Gfx(),4.0f };
+	bool savingDepth = false;
 };

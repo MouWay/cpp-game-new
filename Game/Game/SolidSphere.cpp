@@ -4,6 +4,7 @@
 #include "Vertex.h"
 #include "Sphere.h"
 #include "Stencil.h"
+#include "Channels.h"
 
 SolidSphere::SolidSphere(Graphics& gfx, float radius)
 {
@@ -18,14 +19,14 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius)
 	pTopology = Topology::Resolve(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	{
-		Technique solid;
-		Step only(0);
+		Technique solid{ Chan::main };
+		Step only("lambertian");
 
-		auto pvs = VertexShader::Resolve(gfx, "SolidVS.cso");
-		auto pvsbc = pvs->GetBytecode();
+		auto pvs = VertexShader::Resolve(gfx, "Solid_VS.cso");
+		only.AddBindable(InputLayout::Resolve(gfx, model.vertices.GetLayout(), *pvs));
 		only.AddBindable(std::move(pvs));
 
-		only.AddBindable(PixelShader::Resolve(gfx, "SolidPS.cso"));
+		only.AddBindable(PixelShader::Resolve(gfx, "Solid_PS.cso"));
 
 		struct PSColorConstant
 		{
@@ -34,11 +35,7 @@ SolidSphere::SolidSphere(Graphics& gfx, float radius)
 		} colorConst;
 		only.AddBindable(PixelConstantBuffer<PSColorConstant>::Resolve(gfx, colorConst, 1u));
 
-		only.AddBindable(InputLayout::Resolve(gfx, model.vertices.GetLayout(), pvsbc));
-
 		only.AddBindable(std::make_shared<TransformCbuf>(gfx));
-
-		only.AddBindable(Blender::Resolve(gfx, false));
 
 		only.AddBindable(Rasterizer::Resolve(gfx, false));
 

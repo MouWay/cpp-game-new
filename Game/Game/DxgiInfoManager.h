@@ -1,7 +1,7 @@
 #pragma once
 #include "VoizWin.h"
 #include <vector>
-#include <wrl.h>
+#include "WRLExtension.h"
 #include <string>
 #include <dxgidebug.h>
 

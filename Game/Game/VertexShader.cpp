@@ -1,6 +1,7 @@
 #include "VertexShader.h"
 #include "GraphicsThrowMacros.h"
 #include "BindableCodex.h"
+#include "Util.h"
 #include <typeinfo>
 
 namespace Bind
@@ -11,7 +12,7 @@ namespace Bind
 	{
 		INFOMAN(gfx);
 
-		GFX_THROW_INFO(D3DReadFileToBlob(std::wstring{ path.begin(),path.end() }.c_str(), &pBytecodeBlob));
+		GFX_THROW_INFO(D3DReadFileToBlob(ToWide("ShaderBin\\" + path).c_str(), &pBytecodeBlob));
 		GFX_THROW_INFO(GetDevice(gfx)->CreateVertexShader(
 			pBytecodeBlob->GetBufferPointer(),
 			pBytecodeBlob->GetBufferSize(),
@@ -20,9 +21,10 @@ namespace Bind
 		));
 	}
 
-	void VertexShader::Bind(Graphics& gfx) noexcept
+	void VertexShader::Bind(Graphics& gfx) noxnd
 	{
-		GetContext(gfx)->VSSetShader(pVertexShader.Get(), nullptr, 0u);
+		INFOMAN_NOHR(gfx);
+		GFX_THROW_INFO_ONLY(GetContext(gfx)->VSSetShader(pVertexShader.Get(), nullptr, 0u));
 	}
 
 	ID3DBlob* VertexShader::GetBytecode() const noexcept

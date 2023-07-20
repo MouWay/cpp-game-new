@@ -2,12 +2,14 @@
 #include <memory>
 #include <algorithm>
 #include "MathExtension.h"
-#include "Surface.h"
 #include "imgui.h"
-#include "VertexBuffer.h"
 #include "DynamicConstant.h"
 #include "Testing.h"
 #include "PerfLog.h"
+#include "TestModelProbe.h"
+#include "Testing.h"
+#include "Camera.h"
+#include "Channels.h"
 
 #pragma comment(lib, "assimp-vc143-mt.lib")
 
@@ -17,33 +19,29 @@ App::App(const std::string& commandLine)
 	:
 	commandLine(commandLine),
 	wnd(1280, 720, "Game"),
-	light(wnd.Gfx())
+	light(wnd.Gfx(), { 10.0f,5.0f,0.0f })
 {
-	TestDynamicConstant();
-	cube.SetPos({ 4.0f,0.0f,0.0f });
-	cube2.SetPos({ 0.0f,4.0f,0.0f });
-	//bluePlane.SetPos({-10.0f,0.0f,-20.0f});
-	//redPlane.SetPos({-20.0f, 0.0f, -20.0f});
+	cameras.AddCamera(std::make_unique<Camera>(wnd.Gfx(), "A", dx::XMFLOAT3{ -30.0f, 31.0f, 60.0f }, PI / 9.0f, PI * 5.0f / 6.0f));
+	cameras.AddCamera(std::make_unique<Camera>(wnd.Gfx(), "B", dx::XMFLOAT3{ -13.5f, 28.8f, -6.4f }, PI / 180.0f * 13.0f, PI / 180.0f * 61.0f));
+	cameras.AddCamera(light.ShareCamera());
 
-	wnd.Gfx().SetProjection(dx::XMMatrixPerspectiveLH(1.0f, 9.0f / 16.0f, 0.5f, 400.0f));
+	cube.SetPos({ 10.0f,5.0f,6.0f });
+	cube2.SetPos({ 10.0f,5.0f,14.0f });
+
+	cube.LinkTechniques(rg);
+	cube2.LinkTechniques(rg);
+	light.LinkTechniques(rg);
+	room.LinkTechniques(rg);
+	lady.LinkTechniques(rg);
+	revolver.LinkTechniques(rg);
+	revolver2.LinkTechniques(rg);
+	cameras.LinkTechniques(rg);
+
+	rg.BindShadowCamera(*light.ShareCamera());
 }
 
-void App::DoFrame()
+void App::HandleInput(float dt)
 {
-	const auto dt = timer.Mark() * speed_factor;
-	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
-	wnd.Gfx().SetCamera(cam.GetMatrix());
-	light.Bind(wnd.Gfx(), cam.GetMatrix());
-
-	//room.Submit(fc);
-	//bluePlane.Draw(wnd.Gfx());
-	//redPlane.Draw(wnd.Gfx());
-	light.Submit(fc);
-	cube.Submit(fc);
-	cube2.Submit(fc);
-
-	fc.Execute(wnd.Gfx());
-
 	while (const auto e = wnd.kbd.ReadKey())
 	{
 		if (!e->IsPress())
@@ -68,6 +66,9 @@ void App::DoFrame()
 		case VK_F1:
 			showDemoWindow = true;
 			break;
+		case VK_RETURN:
+			savingDepth = true;
+			break;
 		}
 	}
 
@@ -75,27 +76,27 @@ void App::DoFrame()
 	{
 		if (wnd.kbd.KeyIsPressed('W'))
 		{
-			cam.Translate({ 0.0f,0.0f,dt });
+			cameras->Translate({ 0.0f,0.0f,dt });
 		}
 		if (wnd.kbd.KeyIsPressed('A'))
 		{
-			cam.Translate({ -dt,0.0f,0.0f });
+			cameras->Translate({ -dt,0.0f,0.0f });
 		}
 		if (wnd.kbd.KeyIsPressed('S'))
 		{
-			cam.Translate({ 0.0f,0.0f,-dt });
+			cameras->Translate({ 0.0f,0.0f,-dt });
 		}
 		if (wnd.kbd.KeyIsPressed('D'))
 		{
-			cam.Translate({ dt,0.0f,0.0f });
+			cameras->Translate({ dt,0.0f,0.0f });
 		}
 		if (wnd.kbd.KeyIsPressed('R'))
 		{
-			cam.Translate({ 0.0f,dt,0.0f });
+			cameras->Translate({ 0.0f,dt,0.0f });
 		}
 		if (wnd.kbd.KeyIsPressed('F'))
 		{
-			cam.Translate({ 0.0f,-dt,0.0f });
+			cameras->Translate({ 0.0f,-dt,0.0f });
 		}
 	}
 
@@ -103,24 +104,61 @@ void App::DoFrame()
 	{
 		if (!wnd.CursorEnabled())
 		{
-			cam.Rotate((float)delta->x, (float)delta->y);
+			cameras->Rotate((float)delta->x, (float)delta->y);
 		}
+	}
+}
+
+void App::DoFrame(float dt)
+{
+	wnd.Gfx().BeginFrame(0.07f, 0.0f, 0.12f);
+	light.Bind(wnd.Gfx(), cameras->GetMatrix());
+	rg.BindMainCamera(cameras.GetActiveCamera());
+
+	light.Submit(Chan::main);
+	cube.Submit(Chan::main);
+	room.Submit(Chan::main);
+	lady.Submit(Chan::main);
+	revolver.Submit(Chan::main);
+	revolver2.Submit(Chan::main);
+	cube2.Submit(Chan::main);
+	cameras.Submit(Chan::main);
+
+	cube.Submit(Chan::shadow);
+	room.Submit(Chan::shadow);
+	lady.Submit(Chan::shadow);
+	revolver.Submit(Chan::shadow);
+	revolver2.Submit(Chan::shadow);
+	cube2.Submit(Chan::shadow);
+	
+	rg.Execute(wnd.Gfx());
+
+	if (savingDepth)
+	{
+		rg.DumpShadowMap(wnd.Gfx(), "shadow.png");
+		savingDepth = false;
 	}
 
 	// imgui windows
-	cam.SpawnControlWindow();
+	static MP roomProbe{"Room"};
+	static MP ladyProbe{"Lady"};
+	static MP rv1Probe{"Revolver1"};
+	static MP rv2Probe{"Revolver2"};
+	cameras.SpawnWindow(wnd.Gfx());
 	light.SpawnControlWindow();
+	roomProbe.SpawnWindow(room);
+	ladyProbe.SpawnWindow(lady);
+	rv1Probe.SpawnWindow(revolver);
+	rv2Probe.SpawnWindow(revolver2);
 	ShowImguiDemoWindow();
-	//room.ShowWindow(wnd.Gfx(), "Room");
-	//bluePlane.SpawnControlWindow(wnd.Gfx(), "Blue Plane");
-	//redPlane.SpawnControlWindow(wnd.Gfx(), "Red Plane");
 	cube.SpawnControlWindow(wnd.Gfx(), "Cube 1");
 	cube2.SpawnControlWindow(wnd.Gfx(), "Cube 2");
+	rg.RenderWindows(wnd.Gfx());
 
 	// present
 	wnd.Gfx().EndFrame();
 
-	fc.Reset();
+	rg.Reset();
 }
 
 void App::ShowImguiDemoWindow()
@@ -139,6 +177,9 @@ int App::Go() {
 		if (const auto ecode = Window::ProcessMessages()) {
 			return *ecode;
 		}
-		DoFrame();
+		// execute the game logic
+		const auto dt = timer.Mark() * speed_factor;
+		HandleInput(dt);
+		DoFrame(dt);
 	}
 }
